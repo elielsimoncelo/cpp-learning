@@ -8,3 +8,8 @@
 ### Compilador
 - análise sintática
 - transforma / traduz o código fonte para a linguagem de máquina
+
+### Operadores
+- "::" Operador de Resolução de escopo
+- ">>" Operador de Extração
+- "<<" Operador de Inserção
