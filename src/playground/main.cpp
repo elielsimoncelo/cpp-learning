@@ -10,8 +10,19 @@ template<typename... ARGS> double soma(const ARGS... args)
 
 inline int retorna_10(); // assinatura da funcao
 
+enum class Frutas {
+    BANANA = 0,
+    MACA = 1,
+    LARANJA = 2,
+    HAS_YELLOW = BANANA | LARANJA
+};
+
 int main()
 {
+
+    bool fruta = Frutas::HAS_YELLOW == Frutas::MACA;
+    cout << "Fruta: " << fruta << endl;
+
     int n, m;
     cout << "Digite dois números: ";
     cin >> n >> m; 

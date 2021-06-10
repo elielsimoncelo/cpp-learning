@@ -1,25 +1,16 @@
 #include <iostream>
+#include "funcoes.h"
 
 using namespace std;
 
 int main()
 {
-    int n = 1;
+    g_static_var = 30;
+    g_var = 3;
 
-    while (n)
-    {
-        cout << "Informe 2 números: " << endl;
-        n = n + 1;
-        
-        if (n <= 10)
-        {
-            goto INICIO;
-        }
+    funcao();
+    funcao3();
 
-        return 0; // Sucesso
-
-    }
-
-// cruzes, nunca use isto kkkk
-INICIO:
+    cout << "Valor de g_var " << g_var << "\n" << endl; 
+    cout << "Valor de g_static_var " << g_static_var << "\n" << endl; 
 }

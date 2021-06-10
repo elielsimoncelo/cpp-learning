@@ -4,22 +4,26 @@ using namespace std;
 
 int main()
 {
-    int n = 1;
+    int n;
+    int* pn; // ponteiro para int -> (*) é o ponteiro - inderecao   , (&) e o endereco 
 
-    while (n)
-    {
-        cout << "Informe 2 números: " << endl;
-        n = n + 1;
-        
-        if (n <= 10)
-        {
-            goto INICIO;
-        }
+    n = 10;
+    pn = &n;
 
-        return 0; // Sucesso
+    cout << "Endereco Memoria pn = " << &pn << endl; // endereco de pn  na memoria
+    cout << "Endereco Memoria n = " << &n << endl; // endereco de n na memoria
+    cout << "Endereco Memoria de n usando pn = " << pn << endl; // endereco de n atribuido ao ponteiro
+    cout << "Imprimindo pn = " << *pn << endl; // imprimir o valor do endereco da memoria que foi atribuido ao ponteiro
+    cout << "Imprimindo n = " << n << endl;
+    cout << "---------------------------------------------------------------" << endl;
 
-    }
+    *pn = 55; // duplo acesso a memoria
 
-// cruzes, nunca use isto kkkk
-INICIO:
+    cout << "Endereco Memoria pn = " << &pn << endl; // endereco de pn  na memoria
+    cout << "Endereco Memoria n = " << &n << endl; // endereco de n na memoria
+    cout << "Endereco Memoria de n usando pn = " << pn << endl; // endereco de n atribuido ao ponteiro
+    cout << "Imprimindo pn = " << *pn << endl; // imprimir o valor do endereco da memoria que foi atribuido ao ponteiro
+    cout << "Imprimindo n = " << n << endl;
+
+    return 0;
 }
