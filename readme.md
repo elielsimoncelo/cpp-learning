@@ -10,6 +10,7 @@
 - transforma / traduz o código fonte para a linguagem de máquina
 
 ### Operadores
-- "::" Operador de Resolução de escopo
+- "::" Operador de Resolução de Escopo
 - ">>" Operador de Extração
 - "<<" Operador de Inserção
+- "." Operador de Ligação de Membro
