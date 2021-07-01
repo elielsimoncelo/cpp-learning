@@ -1,6 +1,5 @@
 #include <iostream>
 // #include <string.h>
-
 using namespace std;
 
 //class (default members private)
@@ -9,6 +8,7 @@ using namespace std;
 struct Data
 {
     private:
+        // inicializacao in-class
         const unsigned short mAnoMinimo = 1, mAnoMaximo = 9999;
         unsigned char mDia, mMes;
         unsigned short mAno;
@@ -16,60 +16,77 @@ struct Data
 
     public:
         // por definicao da linguagem este metodo e inline
-        void imprime_data(const Data *data)
+        // void imprime_data(const Data *data) # clang
+        void imprime_data()
         {
-            cout << (int) (*data).mDia << '/'
-                << (int) data->mMes << '/'
-                << (int) data->mAno << '\n';
+            cout << (int) this->mDia << '/'
+                << (int) this->mMes << '/'
+                << (int) this->mAno << '\n';
         }
 
-        void inicia_data(Data *data, char d, char m, short a)
+        // void inicia_data(Data *data, char d, char m, short a) # clang
+        void inicia_data(char d, char m, short a)
         {
-            data->mDia = d;
-            data->mMes = m;
-            data->mAno = a;
+            // data->mDia = d; # clang
+            this->mDia = d; 
+            this->mMes = m;
+            this->mAno = a;
         }
 
-        void altera_data(Data *data, char d, char m, short a)
+        void altera_data(char d, char m, short a)
         {
-            data->mDia = d;
-            data->mMes = m;
-            data->mAno = a;
+            this->mDia = d;
+            this->mMes = m;
+            this->mAno = a;
         }
         
         // por definicao da linguagem este metodo NÃO É inline
-        void altera_data_2(Data *data, char d, char m, short a);
+        void altera_data_2(char d, char m, short a);
+        
+        // const nao deixa alterar os membros usando o this
+        inline void imprime_data_2() const;
 
-    Data() 
-    {
-        mDia = 1;
-        mMes = 1;
-        mAno = 1900;
-    }
+        // Data() = default; // c++11
+        Data()
+        {
+            mDia = 1;
+            mMes = 1;
+            mAno = 1900;
+        }
 
-    Data(short dia, short mes, short ano)
-    {
-        mDia = dia;
-        mMes = mes;
-        mAno = ano;
-    };
+        Data(short dia, short mes, short ano)
+        {
+            mDia = dia;
+            mMes = mes;
+            mAno = ano;
+        };
 };
 
-void Data::altera_data_2(Data *data, char d, char m, short a)
+inline void Data::imprime_data_2() const // # nao deixa alterar os membros usando o this
 {
-    data->mDia = d;
-    data->mMes = m;
-    data->mAno = a;
+    cout << (int) this->mDia << '/'
+        << (int) this->mMes << '/'
+        << (int) this->mAno << '\n';
+}
+
+void Data::altera_data_2(char d, char m, short a)
+{
+    this->mDia = d;
+    this->mMes = m;
+    mAno = a; // sem o this tbem funciona
 }
 
 int main()
 {
-    Data d;// = Data(5, 5, 2025);
+    Data dt, dt1(5, 5, 2025); // new Data(5, 5, 2025);
     
-    // cout << (int) d.mDia << endl;
-    d.imprime_data(&d);
-    d.altera_data_2(&d, 1, 5, 2019);
-    d.imprime_data(&d);
+    cout << "Dt" << endl;
+    dt.imprime_data();
+    dt.altera_data_2(1, 5, 2019);
+    dt.imprime_data();
+
+    cout << "Dt1" << endl;
+    dt1.imprime_data_2();
 
     return 0;
 }
